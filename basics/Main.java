@@ -36,4 +36,20 @@ public class Main {
         }
         System.out.println("It took " + flipsCounter + " flips to get " + numberArg + " heads in a row.");
     }
+
+    public static void clock() {
+        LocalDateTime now = LocalDateTime.now();
+        int prevSecond = now.getSecond();
+        while (true) {
+            now = LocalDateTime.now();
+            int hour = now.getHour();
+            int minute = now.getMinute();
+            int second = now.getSecond();
+            if (second - prevSecond >= 1) {
+                prevSecond = second;
+                String currentTime = hour + ":" + minute + ":" + second;
+                System.out.println(currentTime);
+            }
+        }
+    }
 }

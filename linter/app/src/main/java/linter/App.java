@@ -3,12 +3,29 @@
  */
 package linter;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    public static void main(String[] args) throws IOException {
+        int lineCounter = 0;
+        Path jsPath = Paths.get("./app/src/main/resources/gates.js");
+        Scanner scanner = null;
+        scanner = new Scanner(jsPath);
+
+        while(scanner.hasNextLine()) {
+            lineCounter++;
+            String currentLine = scanner.nextLine();
+            if(!(currentLine.endsWith(";") || currentLine.endsWith("{") ||currentLine.endsWith("}") || currentLine.isEmpty() || currentLine.contains("if") || currentLine.contains("else"))) {
+                System.out.println("Line " +lineCounter+ ": Missing semicolon.");
+            }
+        }
+
     }
 }

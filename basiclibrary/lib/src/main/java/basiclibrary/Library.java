@@ -4,9 +4,9 @@
 package basiclibrary;
 
 
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Library {
     boolean debug = false;
@@ -79,4 +79,76 @@ public class Library {
         }
         return arrOfArrArg[currentLowestIndex];
     }
+
+    public String analyzeWeatherData(int[][] arrayOfArraysArg) {
+        int lowestTemp = Integer.MAX_VALUE;
+        int highestTemp = Integer.MIN_VALUE;
+        String finalString = "";
+        ArrayList<String> missingTemps =  new ArrayList<>();
+        ArrayList<Integer> temperatures = new ArrayList<>();
+        HashSet<Integer> monthTemperatures = new HashSet<>();
+        for(int[] weeklyTemps : arrayOfArraysArg) {
+            for(int dayTemp : weeklyTemps) {
+                temperatures.add(dayTemp);
+                if(dayTemp < lowestTemp) {
+                    lowestTemp = dayTemp;
+                } else if (dayTemp > highestTemp) {
+                    highestTemp = dayTemp;
+                }
+            }
+        }
+        for(int i = lowestTemp; i < highestTemp; i++) {
+            if(!temperatures.contains(i)) {
+                missingTemps.add("Never saw temperature: " + i);
+                finalString += "Never saw temperature: " + i + "\n";
+            }
+        }
+        if(debug) {
+            System.out.println("Missing Temps: " + missingTemps);
+            System.out.println("Lowest Temp: " + lowestTemp);
+            System.out.println("Highest Temp: " + highestTemp);
+            System.out.println(monthTemperatures);
+        }
+
+        monthTemperatures.addAll(temperatures);
+        finalString += "High: " +highestTemp+ "\nLow: " +lowestTemp + "\n";
+        if(debug) {
+        System.out.println(finalString);
+        }
+        return finalString;
+    }
+
+    public String tally(List<String> arrayOfStringsArg) {
+        String largestKey = "";
+        int largestValue = Integer.MIN_VALUE;
+        HashMap<String, Integer> numVotes = new HashMap<>();
+        for(String string : arrayOfStringsArg) {
+            if(numVotes.containsKey(string) == false) {
+                numVotes.put(string, 1);
+                if(largestKey.equals("")) {
+                    largestKey = string;
+                    largestValue = 1;
+                } else {
+                    if(largestValue < numVotes.get(string)) {
+                        largestKey = string;
+                        largestValue = numVotes.get(string);
+                    }
+                }
+            } else {
+                numVotes.put(string, numVotes.get(string) + 1);
+                if(largestValue < numVotes.get(string)) {
+                    largestKey = string;
+                    largestValue = numVotes.get(string);
+                }
+            }
+        }
+        String finalString = largestKey + " received the most votes with " +largestValue+ " votes!";
+        if(debug) {
+        System.out.println(largestKey);
+        System.out.println(numVotes);
+        System.out.println(finalString);
+        }
+        return finalString;
+    }
+
 }

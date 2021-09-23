@@ -52,4 +52,10 @@ public class Main {
             }
         }
     }
+
+    public static void analyzeWeatherData(int[][] arrayofArraysArg) {
+        Hashset<Integer> monthTemperatures = new HashSet<Integer>();
+        monthTemperatures.add()
+    }
+
 }

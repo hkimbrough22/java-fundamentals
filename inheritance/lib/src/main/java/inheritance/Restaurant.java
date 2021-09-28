@@ -1,6 +1,5 @@
 package inheritance;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +42,6 @@ public class Restaurant {
         System.out.println(this.stars);
     }
 
-    
+
 
 }

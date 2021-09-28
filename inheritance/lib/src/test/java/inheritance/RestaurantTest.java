@@ -17,9 +17,7 @@ public class RestaurantTest {
     void turnRestaurantToString() {
         Restaurant sut = new Restaurant("Chick-Fil-A", 5, 2);
         Review sutReview = new Review(sut, "Chick-Fil-A is bomb!", "Haustin Kimbrough", 5);
-        Review sutReview2 = new Review(sut, "Chick-Fil-A is trash!", "Haustin Kimbrough", 0);
         sut.addReview(sutReview);
-        sut.addReview(sutReview2);
         String actualResponse = sut.toString();
         String expectedResponse = "Restaurant Name: Chick-Fil-A\n" +
                 "Rating: ⭐️⭐️⭐️⭐️⭐️\n" +
@@ -36,5 +34,27 @@ public class RestaurantTest {
                 "----------------------------";
 //        System.out.println(actualResponse);
         assertEquals(expectedResponse, actualResponse);
+    }
+
+    @Test
+    void addReviewAssociationToRestaurant() {
+        Restaurant sut = new Restaurant("Chick-Fil-A", 5, 2);
+        Review sutReview = new Review(sut, "Chick-Fil-A is bomb!", "Haustin Kimbrough", 5);
+        Review sutReview2 = new Review(sut, "Chick-Fil-A is trash!", "Haustin Kimbrough", 0);
+        sut.addReview(sutReview);
+        sut.addReview(sutReview2);
+        String expectedString = "Rating: ⭐️⭐️⭐️⭐️⭐️\n" +
+                "Review: Chick-Fil-A is bomb!\n" +
+                "Author: Haustin Kimbrough\n" +
+                "----------------------------\n" +
+                "Rating: \n" +
+                "Review: Chick-Fil-A is trash!\n" +
+                "Author: Haustin Kimbrough\n" +
+                "----------------------------\n";
+        String actualString = "";
+        for(int i = 0; i < sut.reviews.size(); i++) {
+            actualString += "" + sut.reviews.get(i).toString() +"\n----------------------------\n";
+        }
+        assertEquals(expectedString, actualString);
     }
 }

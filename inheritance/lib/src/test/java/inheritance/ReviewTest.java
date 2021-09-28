@@ -28,4 +28,11 @@ public class ReviewTest {
 //        System.out.println(actualReview);
         assertEquals(expectedReview, actualReview);
     }
+
+    @Test
+    void properStarReviewRating() {
+//        Review sut = new Review( new Restaurant("Chick-Fil-A", 2 ),"Is AWESOME", "Haustin", 10);
+        assertThrows(IllegalArgumentException.class, () -> new Review( new Restaurant("Chick-Fil-A", 2 ),"Is AWESOME", "Haustin", 10));
+        assertThrows(IllegalArgumentException.class, () -> new Review( new Restaurant("Chick-Fil-A", 2 ),"Is AWESOME", "Haustin", -3));
+    }
 }

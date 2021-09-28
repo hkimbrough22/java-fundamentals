@@ -10,6 +10,9 @@ public class Review {
         this.restaurant = _restaurant;
         this.body = _body;
         this.author = _author;
+        if(_stars < 0 || _stars > 5) {
+            throw new IllegalArgumentException("Your star rating must be between 0 and 5.");
+        }
         this.stars = _stars;
     }
 

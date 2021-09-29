@@ -2,19 +2,24 @@ package inheritance;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TheatreTest {
     @Test
-    void associateMovieToTheatre() {
+    void associationOfMovieToTheatre() {
         Theatre sut = new Theatre("Cinemax 10", 2);
         sut.addMovie("Terminator");
-        Review sutReview = new Review(sut, "Terminator", "The movie was awesome! So much action!", "Haustin Kimbrough", 5);
-
-        String actualResponse = sut.movies.get(0);
-        String expectedResponse = "Terminator";
+        sut.addMovie("Tropic Thunder");
+        String actualAddResponse = sut.movies.get(0);
+        String expectedAddResponse = "Terminator";
 //        System.out.println(actualResponse);
-        assertEquals(expectedResponse, actualResponse);
+        assertEquals(expectedAddResponse, actualAddResponse);
+        sut.removeMovie("Terminator");
+        String actualRemoveResponse = sut.movies.get(0);
+        String expectedRemoveResponse = "Tropic Thunder";
+        assertEquals(expectedRemoveResponse, actualRemoveResponse);
     }
 
     @Test

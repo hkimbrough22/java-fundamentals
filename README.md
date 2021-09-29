@@ -11,6 +11,7 @@ This is the space where I complete my labs for Code 401 Java.
 ##Table of Contents
 1. [BasicLibrary](./basiclibrary/README.md)
 2. [Linter](./linter/README.md)
+3. [Inheritance](./inheritance/README.md)
 
 ## Architecture
 <!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->

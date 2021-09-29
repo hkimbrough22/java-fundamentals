@@ -5,12 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ShopTest {
     @Test
-    void createShop() {
-        Shop sut = new Shop("Blockbuster", "movies, games, late fees - all in one!", 1);
-        assertTrue((sut instanceof Shop));
-    }
-
-    @Test
     void turnShopToString(){
         Shop sut = new Shop("Blockbuster", "movies, games, late fees - all in one!", 1);
         String actualShop = sut.toString();
@@ -18,6 +12,31 @@ public class ShopTest {
                 "Description: movies, games, late fees - all in one!\n" +
                 "Cost Category: $";
         assertEquals(expectedShop, actualShop);
+    }
+
+    @Test
+    void addReviewAssociationToShop() {
+        Shop sut = new Shop("Blockbuster", "movies, games, late fees - all in one!", 1);
+        Review sutReview = new Review(sut, "Drove all the way here and it was permanently closed! Waste of time!",
+                "Haustin Kimbrough", 1);
+        Review sutReview2 = new Review(sut, "We found the last BlockBuster still in business!",
+                "Haustin Kimbrough", 5);
+        sut.addReview(sutReview);
+        sut.addReview(sutReview2);
+        String expectedString = "Rating: ⭐️\n" +
+                "Review: Drove all the way here and it was permanently closed! Waste of time!\n" +
+                "Author: Haustin Kimbrough\n" +
+                "----------------------------\n" +
+                "Rating: ⭐️⭐️⭐️⭐️⭐️\n" +
+                "Review: We found the last BlockBuster still in business!\n" +
+                "Author: Haustin Kimbrough\n" +
+                "----------------------------\n";
+        String actualString = "";
+        for(int i = 0; i < sut.reviews.size(); i++) {
+            actualString += "" + sut.reviews.get(i).toString() +"\n----------------------------\n";
+        }
+//        System.out.println(actualString);
+        assertEquals(expectedString, actualString);
     }
 
     @Test

@@ -8,13 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RestaurantTest {
     @Test
-    void createRestaurant() {
-        Restaurant sut = new Restaurant("Chili's", 2);
-        assertTrue(sut.name.equals("Chili's"));
-        assertTrue(sut.priceCat == 2);
-    }
-
-    @Test
     void turnRestaurantToString() {
         Restaurant sut = new Restaurant("Chick-Fil-A", 2);
         Review sutReview = new Review(sut, "Chick-Fil-A is bomb!", "Haustin Kimbrough", 5);
@@ -23,7 +16,7 @@ public class RestaurantTest {
         sut.addReview(sutReview2);
         String actualResponse = sut.toString();
         String expectedResponse = "Restaurant Name: Chick-Fil-A\n" +
-                "Rating: 2.0\n" +
+                "Rating: 2.5\n" +
                 "Cost: $$\n" +
                 "---Reviews---\n" +
                 "Rating: ⭐️⭐️⭐️⭐️⭐️\n" +

@@ -1,9 +1,10 @@
 package inheritance;
 
-public class Shop {
-    String name;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Shop extends Business implements Reviewable {
     String description;
-    int priceCat;
 
     Shop(String _name, String _description, int _priceCat) {
         this.name = _name;
@@ -20,5 +21,17 @@ public class Shop {
         costCat = costCat.repeat(priceCat);
         String string = "Name: " +name+ "\nDescription: " +description+ "\nCost Category: " +costCat;
         return string;
+    }
+
+    @Override
+    public void addReview(Review review) {
+        reviews.add(review);
+        reviewCount = reviews.size();
+        int totalStars = 0;
+        for(int i = 0; i < reviewCount; i++) {
+            totalStars += reviews.get(i).stars;
+        }
+        this.stars = (double) totalStars / reviewCount;
+//        System.out.println(this.stars);
     }
 }

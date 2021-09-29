@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ReviewTest {
     @Test
-    void createReview(){
+    void createRestaurantReview(){
         Review sut = new Review(new Restaurant("Chick-Fil-A", 2), "Chick-Fil-A is bomb!", "Haustin Kimbrough", 5);
         String actualBody = sut.body;
         String actualAuthor = sut.author;
@@ -13,6 +13,21 @@ public class ReviewTest {
         String expectedBody = "Chick-Fil-A is bomb!";
         String expectedAuthor = "Haustin Kimbrough";
         int expectedRating = 5;
+        assertEquals(expectedRating, actualRating);
+        assertEquals(expectedAuthor, actualAuthor);
+        assertEquals(expectedBody, actualBody);
+    }
+
+    @Test
+    void createShopReview(){
+        Review sut = new Review(new Shop("BlockBuster", "movies, games, late fees - all in one!", 2), "Drove all the " +
+                "way here and it was permanently closed! Waste of time!", "Haustin Kimbrough", 1);
+        String actualBody = sut.body;
+        String actualAuthor = sut.author;
+        int actualRating = sut.stars;
+        String expectedBody = "Drove all the way here and it was permanently closed! Waste of time!";
+        String expectedAuthor = "Haustin Kimbrough";
+        int expectedRating = 1;
         assertEquals(expectedRating, actualRating);
         assertEquals(expectedAuthor, actualAuthor);
         assertEquals(expectedBody, actualBody);
